@@ -1,6 +1,6 @@
 # run-gist
 
-Run a GitHub gist.
+Run a GitHub gist. For now, this looks for an .html file and executes it. In the future, it can hopefully build larger sites and render non-executable files appropriately.
 
 ### TODO
 
