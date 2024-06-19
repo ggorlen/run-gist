@@ -4,8 +4,6 @@ Run a GitHub gist.
 
 ### TODO
 
-- support query params
-- add UI to input gist id
 - pull down JS/CSS files in repo
   - if there is no HTML file, but there is a JS file, run it and show output.
   - render markdown with marked
