@@ -53,7 +53,7 @@ const runGist = async (gistId) => {
 
 const updateRunHref = (id) => {
   const hrefNoParams = window.location.href.split("?")[0];
-  const href = `${hrefNoParams}?run=${id}`;
+  const href = `${hrefNoParams}?id=${id}`;
   const runUrl = document.querySelector(".run-url");
   runUrl.href = href;
   runUrl.textContent = href;
@@ -62,8 +62,8 @@ const updateRunHref = (id) => {
 const main = () => {
   const params = new URLSearchParams(window.location.search);
 
-  if (params.get("run")) {
-    runGist(params.get("run"));
+  if (params.get("id")) {
+    runGist(params.get("id"));
   }
 
   const gistIdInput = document.querySelector('[name="gist-id"]');
