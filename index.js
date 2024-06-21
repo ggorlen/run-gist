@@ -65,6 +65,9 @@ const main = () => {
   if (params.get("id")) {
     runGist(params.get("id"));
   }
+  if (params.get("run")) { // Temporary for backwards compatibility; remove
+    runGist(params.get("run"));
+  }
 
   const gistIdInput = document.querySelector('[name="gist-id"]');
   updateRunHref(gistIdInput.value);
