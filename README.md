@@ -9,5 +9,6 @@ Run a GitHub gist. For now, this looks for an .html file and executes it. In the
   - render markdown with marked
   - render JSON
   - otherwise just show the text (preformatted?)
+  - Run Python, C, etc with wasm?
 - maybe add a feature to list all gists for a user and let them click one to open/exec it.
 - options to open in new window or replace current, optionally keep run gist header bar
