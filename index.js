@@ -1,7 +1,8 @@
-const setInnerHTML = async (elm, html) => {
-  elm.innerHTML = html;
+const runHTML = async (html) => {
+  const el = document.querySelector("html");
+  el.innerHTML = html;
 
-  for (const oldScriptEl of elm.querySelectorAll("script")) {
+  for (const oldScriptEl of el.querySelectorAll("script")) {
     const newScriptEl = document.createElement("script");
     [...oldScriptEl.attributes].forEach((attr) => {
       newScriptEl.setAttribute(attr.name, attr.value);
@@ -20,15 +21,45 @@ const setInnerHTML = async (elm, html) => {
   }
 };
 
-const tryRunning = (files, language) => {
-  const { content } = Object.values(files).find((e) => e.language === language);
+const runJavaScript = (content) => {
+  const el = document.querySelector("body");
+  const originalLog = console.log;
+  el.textContent = "";
+  console.log = (...args) => {
+    el.textContent += "\n" + args.join(" ");
+    originalLog.apply(console, args);
+  };
+  eval(content);
+  console.log = originalLog;
+};
 
-  if (content) {
-    setInnerHTML(document.querySelector("html"), content);
-    return true;
-  }
+const runPython = async (content) => {
+  const el = document.querySelector("body");
+  el.innerHTML = "Loading Pyodide...";
+  const pyodide = await loadPyodide();
+  pyodide.runPython(`
+        import sys
+        class StdoutCatcher:
+            def __init__(self):
+                self.output = ""
 
-  return false;
+            def write(self, text):
+                self.output += text
+
+            def flush(self):
+                pass  # Required for sys.stdout compatibility
+
+        sys.stdout = StdoutCatcher()
+    `);
+  pyodide.runPython(content);
+  const output = pyodide.runPython("sys.stdout.output");
+  el.textContent = output;
+};
+
+const languageRunners = {
+  HTML: runHTML,
+  JavaScript: runJavaScript,
+  Python: runPython,
 };
 
 const runGist = async (gistId) => {
@@ -42,10 +73,9 @@ const runGist = async (gistId) => {
     return;
   }
 
-  const languages = ["HTML"];
-
-  for (const language of languages) {
-    if (tryRunning(data.files, language)) {
+  for (const file of Object.values(data.files)) {
+    if (languageRunners[file.language]) {
+      languageRunners[file.language](file.content);
       break;
     }
   }
@@ -64,9 +94,6 @@ const main = () => {
 
   if (params.get("id")) {
     runGist(params.get("id"));
-  }
-  if (params.get("run")) { // Temporary for backwards compatibility; remove
-    runGist(params.get("run"));
   }
 
   const gistIdInput = document.querySelector('[name="gist-id"]');
