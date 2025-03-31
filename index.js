@@ -41,19 +41,39 @@ const runPython = async (content, requirements) => {
   pre.textContent = "Loading Pyodide...";
   const pyodide = await loadPyodide({
     stdout: (str) => {
+      console.log(str);
       pre.textContent += str;
     },
     stderr: (str) => {
+      console.error(str);
       pre.textContent += str;
     },
   });
 
   if (requirements) {
     const pkgs = requirements.split("\n").map((e) => e.split("=")[0]);
-    await pyodide.loadPackage(pkgs);
+    await pyodide.loadPackage(pkgs, {
+      messageCallback: (str) => {
+        console.log(str);
+        pre.textContent += str;
+      },
+      errorCallback: (str) => {
+        console.error(str);
+        pre.textContent += str;
+      },
+    });
   }
 
-  await pyodide.loadPackagesFromImports(content);
+  await pyodide.loadPackagesFromImports(content, {
+    messageCallback: (str) => {
+      console.log(str);
+      pre.textContent += str;
+    },
+    errorCallback: (str) => {
+      console.error(str);
+      pre.textContent += str;
+    },
+  });
   pre.textContent = "";
 
   try {
@@ -83,8 +103,8 @@ const runGist = async (gistId) => {
   for (const file of Object.values(data.files)) {
     if (languageRunners[file.language] && file.language === "Python") {
       const requirements = Object.values(data.files).find(
-        (file) => file.fileName === "requirements.txt",
-      );
+        (file) => file.filename === "requirements.txt",
+      )?.content;
       languageRunners[file.language](file.content, requirements);
       break;
     } else if (languageRunners[file.language]) {
