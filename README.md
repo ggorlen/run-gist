@@ -1,16 +1,23 @@
 # run-gist
 
-Run a GitHub gist. For now, this looks for an .html, .py or .js file and executes it. In the future, it can hopefully run more languages and handle larger projects.
+Run a GitHub gist. This looks for an .html, .py or .js file in the gist and executes it. In the future, it can hopefully run more languages and handle larger projects.
+
+### Examples
+
+- Single HTML file: <https://ggorlen.github.io/run-gist/?id=1234f531e250c4858ee45e650946ab22>
+- Simple Python script: <https://ggorlen.github.io/run-gist/?id=1811236>
+- Python script with deps: <https://ggorlen.github.io/run-gist/?id=35e3f829ded6d826626762da50b7a003>
+- Simple JS script: <https://ggorlen.github.io/run-gist/?id=faf38135846db5a1a93a69875dd0761d>
 
 ### TODO
 
 - Parse and include CSS/JS files included from HTML
-  - if there is no HTML file, but there is a JS file, run it and show output.
+  - HTML/CSS/JS example to make work: <https://ggorlen.github.io/run-gist/?id=eedd8f9f754706347b63d2baa95ca73c>
   - render markdown with marked
-  - render JSON
-  - otherwise just show the text (preformatted?)
-  - Run different languages with WASM?
-  - Handle requirements.txt following [this](https://stackoverflow.com/questions/62148386/python-in-browser-with-webassembly-without-recompilation/79486695#79486695) or [this](https://stackoverflow.com/questions/79115163/setup-to-get-the-python-output-displayed-line-by-line-during-execution)
-- maybe add a feature to list all gists for a user and let them click one to open/exec it.
-- options to open in new window or replace current, optionally keep run gist header bar
-- add editing/saving options. See [this repo](https://github.com/greggman/jsgist?tab=readme-ov-file) for inspiration.
+  - render JSON/plain text preformatted
+- Add support for other WASM languages like Lua, PHP, C, etc (might have to move away from no-build though)
+- Could have it run files from github repos following similar patterns
+- Maybe add a feature to [list all gists for a user](https://github.com/ggorlen/gist-list) and let them click one to open/exec it.
+- Add editing/saving options. See [this repo](https://github.com/greggman/jsgist?tab=readme-ov-file) for inspiration.
+- Options to open in new window or replace current, optionally keep run gist header bar
+- Could try to get turtle running in the browser, a la [this](https://stackoverflow.com/questions/69326598/running-python-3-turtle-programs-in-the-browser)

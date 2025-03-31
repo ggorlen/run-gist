@@ -23,37 +23,44 @@ const runHTML = async (html) => {
 
 const runJavaScript = (content) => {
   const el = document.querySelector("body");
+  el.innerHTML = "<pre></pre>";
+  const pre = el.querySelector("pre");
   const originalLog = console.log;
-  el.textContent = "";
   console.log = (...args) => {
-    el.textContent += "\n" + args.join(" ");
+    pre.textContent += "\n" + args.join(" ");
     originalLog.apply(console, args);
   };
   eval(content);
   console.log = originalLog;
 };
 
-const runPython = async (content) => {
+const runPython = async (content, requirements) => {
   const el = document.querySelector("body");
-  el.innerHTML = "Loading Pyodide...";
-  const pyodide = await loadPyodide();
-  pyodide.runPython(`
-        import sys
-        class StdoutCatcher:
-            def __init__(self):
-                self.output = ""
+  el.innerHTML = "<pre></pre>";
+  const pre = el.querySelector("pre");
+  pre.textContent = "Loading Pyodide...";
+  const pyodide = await loadPyodide({
+    stdout: (str) => {
+      pre.textContent += str;
+    },
+    stderr: (str) => {
+      pre.textContent += str;
+    },
+  });
 
-            def write(self, text):
-                self.output += text
+  if (requirements) {
+    const pkgs = requirements.split("\n").map((e) => e.split("=")[0]);
+    await pyodide.loadPackage(pkgs);
+  }
 
-            def flush(self):
-                pass  # Required for sys.stdout compatibility
+  await pyodide.loadPackagesFromImports(content);
+  pre.textContent = "";
 
-        sys.stdout = StdoutCatcher()
-    `);
-  pyodide.runPython(content);
-  const output = pyodide.runPython("sys.stdout.output");
-  el.textContent = output;
+  try {
+    pyodide.runPython(content);
+  } catch (err) {
+    pre.textContent = err.message;
+  }
 };
 
 const languageRunners = {
@@ -63,10 +70,10 @@ const languageRunners = {
 };
 
 const runGist = async (gistId) => {
-  const res = await fetch(`https://api.github.com/gists/${gistId}`);
-  const data = await res.json();
+  const response = await fetch(`https://api.github.com/gists/${gistId}`);
+  const data = await response.json();
 
-  if (!res.ok) {
+  if (!response.ok) {
     console.error(data);
     const errEl = document.querySelector(".error");
     errEl.textContent = data.message;
@@ -74,7 +81,13 @@ const runGist = async (gistId) => {
   }
 
   for (const file of Object.values(data.files)) {
-    if (languageRunners[file.language]) {
+    if (languageRunners[file.language] && file.language === "Python") {
+      const requirements = Object.values(data.files).find(
+        (file) => file.fileName === "requirements.txt",
+      );
+      languageRunners[file.language](file.content, requirements);
+      break;
+    } else if (languageRunners[file.language]) {
       languageRunners[file.language](file.content);
       break;
     }
