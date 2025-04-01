@@ -27,7 +27,7 @@ const runJavaScript = (content) => {
   const pre = el.querySelector("pre");
   const originalLog = console.log;
   console.log = (...args) => {
-    pre.textContent += "\n" + args.join(" ");
+    pre.textContent += `${args.join(" ")}\n`;
     originalLog.apply(console, args);
   };
   eval(content);
@@ -38,15 +38,15 @@ const runPython = async (content, requirements) => {
   const el = document.querySelector("body");
   el.innerHTML = "<pre></pre>";
   const pre = el.querySelector("pre");
-  pre.textContent = "Loading Pyodide...";
+  pre.textContent = "Loading Pyodide...\n";
   const pyodide = await loadPyodide({
     stdout: (str) => {
       console.log(str);
-      pre.textContent += str;
+      pre.textContent += `${str}\n`;
     },
     stderr: (str) => {
       console.error(str);
-      pre.textContent += str;
+      pre.textContent += `${str}\n`;
     },
   });
 
@@ -55,11 +55,11 @@ const runPython = async (content, requirements) => {
     await pyodide.loadPackage(pkgs, {
       messageCallback: (str) => {
         console.log(str);
-        pre.textContent += str;
+        pre.textContent += `${str}\n`;
       },
       errorCallback: (str) => {
         console.error(str);
-        pre.textContent += str;
+        pre.textContent += `${str}\n`;
       },
     });
   }
@@ -67,11 +67,11 @@ const runPython = async (content, requirements) => {
   await pyodide.loadPackagesFromImports(content, {
     messageCallback: (str) => {
       console.log(str);
-      pre.textContent += str;
+      pre.textContent += `${str}\n`;
     },
     errorCallback: (str) => {
       console.error(str);
-      pre.textContent += str;
+      pre.textContent += `${str}\n`;
     },
   });
   pre.textContent = "";
@@ -79,7 +79,8 @@ const runPython = async (content, requirements) => {
   try {
     pyodide.runPython(content);
   } catch (err) {
-    pre.textContent = err.message;
+    console.error(err);
+    pre.textContent += `${err.message}\n`;
   }
 };
 
