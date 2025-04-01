@@ -23,3 +23,4 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
 - Consider escaping or rendering HTML characters from Python scripts
   - Theoretically could follow this further to make web apps with backend languages
 - Could try to get turtle running in the browser, a la [this](https://stackoverflow.com/questions/69326598/running-python-3-turtle-programs-in-the-browser)
+- Load Pyodide packages with [micropip](https://micropip.pyodide.org/en/v0.7.1/project/api.html#micropip.install)
