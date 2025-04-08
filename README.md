@@ -8,6 +8,7 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
 - Simple Python script: <https://ggorlen.github.io/run-gist/?id=1811236>
 - Python script with deps: <https://ggorlen.github.io/run-gist/?id=35e3f829ded6d826626762da50b7a003>
 - Simple JS script: <https://ggorlen.github.io/run-gist/?id=faf38135846db5a1a93a69875dd0761d>
+- Simple Lua script: <https://ggorlen.github.io/run-gist/?id=b420d1ecc60ad6ec44e5>
 
 ### TODO
 
@@ -24,3 +25,4 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
   - Theoretically could follow this further to make web apps with backend languages
 - Could try to get turtle running in the browser, a la [this](https://stackoverflow.com/questions/69326598/running-python-3-turtle-programs-in-the-browser)
 - Load Pyodide packages with [micropip](https://micropip.pyodide.org/en/v0.7.1/project/api.html#micropip.install)
+- Upgrade Lua VM to Fengari

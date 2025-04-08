@@ -34,6 +34,20 @@ const runJavaScript = (content) => {
   console.log = originalLog;
 };
 
+const runLua = (content) => {
+  const el = document.querySelector("body");
+  el.innerHTML = "<pre></pre>";
+  const pre = el.querySelector("pre");
+  const lua = new Lua.State();
+  const originalLog = console.log;
+  console.log = (...args) => {
+    pre.textContent += `${args.join(" ")}\n`;
+    originalLog.apply(console, args);
+  };
+  lua.execute(content);
+  console.log = originalLog;
+};
+
 const runPython = async (content, requirements) => {
   const el = document.querySelector("body");
   el.innerHTML = "<pre></pre>";
@@ -87,6 +101,7 @@ const runPython = async (content, requirements) => {
 const languageRunners = {
   HTML: runHTML,
   JavaScript: runJavaScript,
+  Lua: runLua,
   Python: runPython,
 };
 
@@ -107,12 +122,15 @@ const runGist = async (gistId) => {
         (file) => file.filename === "requirements.txt",
       )?.content;
       languageRunners[file.language](file.content, requirements);
-      break;
+      return;
     } else if (languageRunners[file.language]) {
       languageRunners[file.language](file.content);
-      break;
+      return;
     }
   }
+
+  const errEl = document.querySelector(".error");
+  errEl.textContent = "No runnable files found in gist";
 };
 
 const updateRunHref = (id) => {
