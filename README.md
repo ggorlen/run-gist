@@ -17,6 +17,7 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
   - Render markdown with marked
   - Render JSON/plain text preformatted
 - Add support for other WASM languages like Lua, PHP, C, etc (might have to move away from no-build though)
+  - https://webr.sh/
 - Could have it run files from github repos following similar patterns
 - Maybe add a feature to [list all gists for a user](https://github.com/ggorlen/gist-list) and let them click one to open/exec/edit it.
 - Add editing/saving options. See [this repo](https://github.com/greggman/jsgist?tab=readme-ov-file), [this project](https://scriptpad.dev/?id=ybqiqNVknx0aYPMCaTlJ&o=1&c=0) and [this repo](https://github.com/gist-run/gist-run) for inspiration.
