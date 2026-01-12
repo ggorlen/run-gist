@@ -18,6 +18,7 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
   - Render JSON/plain text preformatted
 - Add support for other WASM languages like Lua, PHP, C, etc (might have to move away from no-build though)
   - https://webr.sh/
+  - Resources: [1](https://github.com/mbasso/awesome-wasm), [2](https://github.com/appcypher/awesome-wasm-langs)
 - Could have it run files from github repos following similar patterns
 - Maybe add a feature to [list all gists for a user](https://github.com/ggorlen/gist-list) and let them click one to open/exec/edit it.
 - Add editing/saving options. See [this repo](https://github.com/greggman/jsgist?tab=readme-ov-file), [this project](https://scriptpad.dev/?id=ybqiqNVknx0aYPMCaTlJ&o=1&c=0) and [this repo](https://github.com/gist-run/gist-run) for inspiration.
@@ -27,3 +28,4 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
 - Could try to get turtle running in the browser, a la [this](https://stackoverflow.com/questions/69326598/running-python-3-turtle-programs-in-the-browser)
 - Load Pyodide packages with [micropip](https://micropip.pyodide.org/en/v0.7.1/project/api.html#micropip.install)
 - Upgrade Lua VM to Fengari
+- Try sandboxed JS execution with [quickjs](https://github.com/justjake/quickjs-emscripten?tab=readme-ov-file#using-in-the-browser-without-a-build-step)
