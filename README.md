@@ -18,6 +18,7 @@ Run a GitHub gist. This looks for an .html, .py or .js file in the gist and exec
   - Render JSON/plain text preformatted
 - Add support for other WASM languages like Lua, PHP, C, etc (might have to move away from no-build though)
   - https://webr.sh/
+  - https://github.com/replit-archive/emscripted-ruby (wasn't able to get working on a quick spike)
   - Resources: [1](https://github.com/mbasso/awesome-wasm), [2](https://github.com/appcypher/awesome-wasm-langs)
 - Could have it run files from github repos following similar patterns
 - Maybe add a feature to [list all gists for a user](https://github.com/ggorlen/gist-list) and let them click one to open/exec/edit it.
