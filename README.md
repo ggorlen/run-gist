@@ -50,6 +50,7 @@ Run a GitHub gist. This looks for supported code files in the gist and executes 
 - infinite loop detection?
 - https://news.ycombinator.com/item?id=46762150 browser is the sandbox
 - add a way to execute a gist locally?
+- add e2e tests that run every month to check for regressions, or maybe even an action to find version bumps
 
 ### Similar tools
 
