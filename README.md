@@ -51,3 +51,8 @@ Run a GitHub gist. This looks for supported code files in the gist and executes 
 - https://news.ycombinator.com/item?id=46762150 browser is the sandbox
 - add a way to execute a gist locally?
 
+### Similar tools
+
+- https://www.pythonanywhere.com/gists/
+- gist.cafe
+- (someone I follow, maybe potch, has a similar project I need to find here)
