@@ -1,3 +1,22 @@
+const loadScript = (() => {
+  const loaded = new Map();
+  return (src) => {
+    if (!loaded.has(src)) {
+      loaded.set(
+        src,
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = src;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.appendChild(script);
+        }),
+      );
+    }
+    return loaded.get(src);
+  };
+})();
+
 const runHTML = async (html) => {
   const el = document.querySelector("html");
   el.innerHTML = html;
@@ -34,10 +53,13 @@ const runJavaScript = (content) => {
   console.log = originalLog;
 };
 
-const runLua = (content) => {
+const runLua = async (content) => {
   const el = document.querySelector("body");
   el.innerHTML = "<pre></pre>";
   const pre = el.querySelector("pre");
+  pre.textContent = "Loading Lua...\n";
+  await loadScript("https://cdn.jsdelivr.net/npm/lua.vm.js");
+  pre.textContent = "";
   const lua = new Lua.State();
   const originalLog = console.log;
   console.log = (...args) => {
@@ -53,6 +75,7 @@ const runPython = async (content, requirements) => {
   el.innerHTML = "<pre></pre>";
   const pre = el.querySelector("pre");
   pre.textContent = "Loading Pyodide...\n";
+  await loadScript("https://cdn.jsdelivr.net/pyodide/v0.27.4/full/pyodide.js");
   const pyodide = await loadPyodide({
     stdout: (str) => {
       console.log(str);
@@ -130,7 +153,7 @@ const runGist = async (gistId) => {
   }
 
   const errEl = document.querySelector(".error");
-  errEl.textContent = "No runnable files found in gist";
+  errEl.textContent = "No supported runanble files found in gist";
 };
 
 const updateRunHref = (id) => {
