@@ -42,6 +42,7 @@ Not yet fully working:
   - https://popcorn.swmansion.com (haven't tried)
   - https://github.com/replit-archive/emscripted-ruby (wasn't able to get working on a quick spike)
   - https://github.com/Doridian/LuaJS (haven't tried, probably not needed since we're using Fengari)
+  - https://www.spritely.institute/hoot/ (probably not necessary but listed just in case)
   - esolangs
   - Resources: [1](https://github.com/mbasso/awesome-wasm), [2](https://github.com/appcypher/awesome-wasm-langs)
 - Could have it run files from github repos following similar patterns
