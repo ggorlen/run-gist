@@ -8,22 +8,22 @@ Run a GitHub gist. This looks for supported code files in the gist and executes 
 - Python: <https://ggorlen.github.io/run-gist/?id=1811236>
 - Python with deps: <https://ggorlen.github.io/run-gist/?id=35e3f829ded6d826626762da50b7a003>
 - JS: <https://ggorlen.github.io/run-gist/?id=faf38135846db5a1a93a69875dd0761d>
-- Lua: <https://ggorlen.github.io/run-gist/?id=b420d1ecc60ad6ec44e5>
+- Lua: <https://ggorlen.github.io/run-gist/?id=9587b86581069c16d50d56ef6e5bb0b0>
 - Perl: <https://ggorlen.github.io/run-gist/?id=5820275>
 - Ruby: <https://ggorlen.github.io/run-gist/?id=d7cab2f5d98307909f3e53cbf61ffdce>
 - PHP: <https://ggorlen.github.io/run-gist/?id=bf0fb63432a90c3de93a427f013bd2af>
 - SQLite: <https://ggorlen.github.io/run-gist/?id=d25dcbe8cd0e6982d3f315dfd298034a&lang=sqlite>
 - Postgres: <https://ggorlen.github.io/run-gist/?id=d25dcbe8cd0e6982d3f315dfd298034a&lang=postgres>
-- Markdown: <https://ggorlen.github.io/run-gist/?id=8eccfe543a74717b13703cf7a2e03679>
 - TypeScript: <https://ggorlen.github.io/run-gist/?id=ea91750c08ee2de80f8a4176bed85623>
+- Markdown: <https://ggorlen.github.io/run-gist/?id=8eccfe543a74717b13703cf7a2e03679>
+- JSON: <https://ggorlen.github.io/run-gist/?id=5f5f8bd37428502cac6d960fabb30245>
+- YAML: <https://ggorlen.github.io/run-gist/?id=1df3e721f732f958688c076674f81aee>
 
 Not yet fully working:
 - Text: <https://ggorlen.github.io/run-gist/?id=35e3f829ded6d826626762da50b7a003&file=requirements.txt> (needs to infer lang from extension)
 - R: <https://ggorlen.github.io/run-gist/?id=51f3bc251a47bce643b3f4c069ffccd3> (needs to print to DOM rather than just console)
 - Scheme: <https://ggorlen.github.io/run-gist/?id=1854679> (no output)
 - ClojureScript: <https://ggorlen.github.io/run-gist/?id=1343920> (no output)
-- JSON: <https://ggorlen.github.io/run-gist/?id=5f5f8bd37428502cac6d960fabb30245> (poor color contrast)
-- YAML: <https://ggorlen.github.io/run-gist/?id=1df3e721f732f958688c076674f81aee> (poor color contrast)
 
 ### TODO
 
