@@ -46,6 +46,7 @@ Not yet fully working:
   - esolangs
   - Resources: [1](https://github.com/mbasso/awesome-wasm), [2](https://github.com/appcypher/awesome-wasm-langs)
 - Could have it run files from github repos following similar patterns
+- if we want to replace coder school replit we'll need `input()` support, repl-style
 - Maybe add a feature to [list all gists for a user](https://github.com/ggorlen/gist-list) and let them click one to open/exec/edit it. Better: just add a link to this run-gist app into that repo.
 - Add editing/saving options. See [this repo](https://github.com/greggman/jsgist), [this project](https://scriptpad.dev/?id=ybqiqNVknx0aYPMCaTlJ&o=1&c=0) and [this repo](https://github.com/gist-run/gist-run) for inspiration.
 - Options to open in new window or replace current, optionally keep run gist header bar
