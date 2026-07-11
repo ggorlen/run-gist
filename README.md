@@ -67,3 +67,4 @@ Not yet fully working:
 - https://github.com/gist-run/gist-run
 - https://www.jspad.dev/
 - https://github.com/greggman/jsgist
+- https://html-drive.com/ (paid, html/markdown only but example of serving from gdrive)
